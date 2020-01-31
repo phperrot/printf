@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 11:03:09 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/30 18:11:18 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 12:12:43 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int				check_double_percent(char *str, int *i)
 		*i = *i + 2;
 		check++;
 	}
+	if (*i >= (int)ft_strlen(str))
+		*i = *i - 1;
 	return (check);
 }
 

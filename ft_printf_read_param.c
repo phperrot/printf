@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 09:10:57 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/31 10:43:11 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 12:16:47 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,13 +115,14 @@ t_dstruct		*ft_read_string(char *str, va_list arguments, int i)
 	{
 		result->double_percent = result->double_percent +\
 		check_double_percent(str, &i);
-		if (str[i] == '%' && str[i + 1] != '%')
+		if (str[i] == '%' && str[i + 1] != '%' && str[i + 1] != '\0')
 		{
 			result->marker1 = i - k;
 			i = ft_param(i, str, arguments, &result);
 			result->marker2 = i;
 			return (result);
 		}
+		if (str[i] != '%')
 		ft_putchar(str[i]);
 		i++;
 	}
