@@ -6,7 +6,7 @@
 #    By: phperrot <marvin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by phperrot          #+#    #+#              #
-#    Updated: 2020/01/16 11:41:54 by phperrot         ###   ########.fr        #
+#    Updated: 2020/01/31 09:49:03 by phperrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS = ft_strlen.c \
 	   ft_strtrim.c \
 	   ft_itoa.c \
 	   ft_putchar.c \
+	   ft_putnbr.c \
 	   ft_putstr.c \
 	   ft_strdup_free.c \
 	   ft_strncmp.c

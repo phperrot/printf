@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 13:16:36 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/30 18:24:53 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 11:43:42 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ char		*ft_prec_pars(char *argv, char type, t_struct **param, int *neg)
 	char	*output;
 	char	*tmp;
 
-	ft_putstr("\n**********************\n");
-	ft_putstr("ARGV ");ft_putstr(argv);ft_putchar('\n');
+//	ft_putstr("\n**********************\n");
+//	ft_putstr("ARGV ");ft_putstr(argv);ft_putchar('\n');
 	
 	if ((ft_test_presence_char((*param)->type, SET_CHAR)))
 		output = ft_strdup(argv);
@@ -39,9 +39,9 @@ char		*ft_prec_pars(char *argv, char type, t_struct **param, int *neg)
 			*neg = 1;
 		}
 		tmp = ft_itoa(arg);
-		ft_putstr("\n**********************\n");
+//		ft_putstr("\n**********************\n");
 //		ft_putnbr(arg);ft_putchar('\n');
-	ft_putstr("LEN PRECISION TMP");ft_putstr((tmp));ft_putchar('\n');
+//	ft_putstr("LEN PRECISION TMP");ft_putstr((tmp));ft_putchar('\n');
 
 		if (!(output = malloc(sizeof(char) * (1))))
 			return (NULL);
@@ -57,8 +57,8 @@ char		*ft_prec_pars(char *argv, char type, t_struct **param, int *neg)
 		free(tmp);
 		convbase(arg, *param, 0, &output);
 	}
-		ft_putstr("\n||||||||||||||||||||||||||||\n");
-		ft_putstr("LEN PRECISION STR--");ft_putstr((output));ft_putchar('\n');
+//		ft_putstr("\n||||||||||||||||||||||||||||\n");
+//		ft_putstr("LEN PRECISION STR--");ft_putstr((output));ft_putchar('\n');
 	return (output);
 }
 
@@ -67,11 +67,28 @@ char		*ft_prec_fin(t_struct *param, char *output, int preci, int neg)
 	int		i;
 	char	*str;
 	int		size;
+//	int		j;
 
 	i = neg;
+//	if (!(str = malloc(sizeof(char) * (preci + 1 + neg))))
+//		return (NULL);
+	if (param->type == 's')
+		str = ft_strdup("");
+	else
+	{
 	if (!(str = malloc(sizeof(char) * (preci + 1 + neg))))
 		return (NULL);
-	if (neg && ft_strchr("Xxu", param->type) == 0)
+	}	
+	//	j = 0;
+/*	ft_putstr("preci:");ft_putnbr(preci);ft_putchar('\n');
+	ft_putstr("neg:");ft_putnbr(neg);ft_putchar('\n');
+	while (j < preci + neg)
+	{
+		str[j] = '0';
+		j++;
+	}
+	str[j] = '\0';
+*/	if (neg && ft_strchr("Xxu", param-> type) == 0)
 		str[0] = '-';
 	if (param->type == 's')
 		str = ft_strjoin_free(str, output, 3);
@@ -113,8 +130,8 @@ char		*ft_precision(char *argv, t_struct *p)
 	if (ft_strlen(p->prec) <= 1 || ((ft_strlen(p->prec) == 2)
 		&& p->prec[1] == '0') || (prec < (int)ft_strlen(output)))
 	{
-	ft_putstr("\n>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
-	ft_putstr("LEN PRECISION STR--");ft_putstr((output));ft_putchar('\n');
+//	ft_putstr("\n>>>>>>>>>>>>>>>>>>>>>>>>>>\n");
+//	ft_putstr("LEN PRECISION STR--");ft_putstr((output));ft_putchar('\n');
 		if (p->type == 's' && prec <
 				(int)ft_strlen(output) && ft_strchr(p->prec, '.'))
 			output[prec] = '\0';

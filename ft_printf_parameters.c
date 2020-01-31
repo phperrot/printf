@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:29:36 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/30 18:26:13 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 10:12:00 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int			ft_display(t_struct *param, char *argv)
 	int		size;
 	int		width;
 
-	ft_putstr("\nmmmmmmmmmmmmmmmmmmmmmm\n");
-	ft_putstr("ARGV:");ft_putstr(argv);ft_putchar('\n');
+//	ft_putstr("\nmmmmmmmmmmmmmmmmmmmmmm\n");
+//	ft_putstr("ARGV:");ft_putstr(argv);ft_putchar('\n');
 
 	str = ft_precision(argv, param);
 	if (ft_strchr(param->flag, '#') != 0)

@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:57:23 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/30 19:07:22 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 11:42:19 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ int main()
 	int a;
 	int	b;
 
-	a = ft_printf("+%.*s", 3, "hello");
-	b = printf("-%.*s", 3, "hello");
+	a = 0;
+	b = 0;
+	a = ft_printf("%.3d", 3);
+	b = printf("%.3d", 3);
+//	a = ft_printf("+%0.s %-d %.*s %c %5d %0.i %3%  === %x", "salut", 4, 3, "hello", '@', 5, 3, 192);
+//	b = printf("+%.*s %c %5d %0.i %3%  === %x", 3, "hello", '@', 5, 3, 192);
 	ft_putchar('\n');
 	printf("\nA=%d\nB=%d\n", a, b);
 //	system("leaks a.out");

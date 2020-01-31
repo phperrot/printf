@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 09:10:57 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/30 18:42:26 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 10:43:11 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,22 @@ int				ft_param(int i, char *s, va_list l, t_dstruct **r)
 	arg = ft_wildcard(&par, arg, &tmp, l);
 	if (ft_strncmp(par->prec, ".*", 2) == 0)
 	{
-		ft_putstr("\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv\n");
-		ft_putstr(arg);ft_putchar('\n');
+/**/	(*par).prec = ft_strdup(arg);
+//		ft_putstr(par->prec);ft_putchar('\n');ft_strchr(par->prec, '*');
+//		ft_putstr("\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv  ");ft_putnbr(i);ft_putchar('\n');
+//		ft_putstr(arg);ft_putchar('\n');
 		arg = ft_strjoin_free(".", arg, 2);
-		ft_putstr(arg);ft_putchar('\n');
+//		ft_putstr(arg);ft_putchar('\n');
 		tmp1 = ft_strdup_free(tmp1, arg);
 		free(arg);
 		(*par).pound_flag = 0;
 		arg = ft_get_arg(l, &(par));
-		ft_putstr("\nooooooooooooooooooooooooooooooooooo\n");
-		ft_putstr(arg);ft_putchar('\n');
-		ft_putstr("TYPE");ft_putchar((par)->type);ft_putchar('\n');
-
+//		ft_putstr("\nooooooooooooooooooooooooooooooooooo\n");
+//		ft_putstr(arg);ft_putchar('\n');
+//		ft_putstr("TYPE");ft_putchar((par)->type);ft_putchar('\n');
+/*
+ * NEW
+*/ //		par->prec = arg;
 	}
 	if (ft_strlen(arg) >= 2 && ft_strlen(tmp1) >= 2)
 	if (tmp1[1] == '-' && arg[0] == '0' && arg[1] == '\0')

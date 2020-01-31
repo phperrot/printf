@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:38:24 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/30 19:09:36 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 11:24:31 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,18 @@ char			*ft_get_arg(va_list arguments, t_struct **param)
 {
 	void		*output;
 
+//	ft_putstr((*param)->prec);ft_putchar('\n');
 	if (((*param)->pound_flag)  || (ft_strchr((*param)->prec, '*') > 0))
 	{
-	ft_putstr("\n888888888888888888888888888\n");
+/*	ft_putstr("\n888888888888888888888888888\n");
 	ft_putstr("888888888888888888888888888\n");
 	ft_putstr("888888888888888888888888888\n");
 	ft_putstr("888888888888888888888888888\n");
 	ft_putstr("FLAG:"); ft_putnbr((*param)->pound_flag);ft_putchar('\n');
 	ft_putstr("PREC:"); ft_putstr((*param)->prec);ft_putchar('\n');
 	ft_putstr("type:"); ft_putchar((*param)->type);ft_putchar('\n');
-	output = ft_itoa((int)va_arg(arguments, int));
-	ft_putstr("OUTPUT:"); ft_putstr(output);ft_putchar('\n');
+*/	output = ft_itoa((int)va_arg(arguments, int));
+//	ft_putstr("OUTPUT:"); ft_putstr(output);ft_putchar('\n');
 		return (output);
 	}
 	if ((*param)->type == 's')
@@ -62,8 +63,8 @@ char			*ft_get_arg(va_list arguments, t_struct **param)
 		(*param)->type = 'c';
 	if (output == NULL)
 		output = ft_strdup("(null)");
-	ft_putstr("\n888888888888888888888888888\n");
-	ft_putstr("OUTPUT:");ft_putstr(output);ft_putchar('\n');
+//	ft_putstr("\n888888888888888888888888888\n");
+//	ft_putstr("OUTPUT:");ft_putstr(output);ft_putchar('\n');
 	return (output);
 }
 
