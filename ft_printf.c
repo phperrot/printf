@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:38:24 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/31 14:35:44 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/02/01 15:33:23 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ char			*ft_get_arg(va_list arguments, t_struct **param)
 {
 	void		*output;
 
-	if (((*param)->pound_flag)  || (ft_strchr((*param)->prec, '*') > 0))
+	if (((*param)->pound_flag) || (ft_strchr((*param)->prec, '*') > 0))
 	{
-	output = ft_itoa((int)va_arg(arguments, int));
+		output = ft_itoa((int)va_arg(arguments, int));
 		return (output);
 	}
 	if ((*param)->type == 's')
@@ -54,8 +54,6 @@ char			*ft_get_arg(va_list arguments, t_struct **param)
 		(*param)->type = 'c';
 	if (output == NULL)
 		output = ft_strdup("(null)");
-//	ft_putstr("\n888888888888888888888888888\n");
-//	ft_putstr("OUTPUT:");ft_putstr(output);ft_putchar('\n');
 	return (output);
 }
 

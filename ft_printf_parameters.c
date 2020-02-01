@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:29:36 by phperrot          #+#    #+#             */
-/*   Updated: 2020/02/01 15:16:25 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/02/01 16:55:00 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ int			ft_display(t_struct *param, char *argv)
 	char	*str;
 	int		size;
 	int		width;
-//	char	*tmp;
-//	ft_putstr("\nmmmmmmmmmmmmmmmmmmmmmm\n");
-//	ft_putstr("ARGV:");ft_putstr(argv);ft_putchar('\n');
+	int		negative;
 
-	str = ft_precision(argv, param);
+	negative = 0;
+	str = ft_precision(argv, param, negative);
 	if (ft_strchr(param->flag, '#') != 0)
 	{
 		if (param->type == 'o')
@@ -70,15 +69,9 @@ int			ft_display(t_struct *param, char *argv)
 	}
 	if (param->type == 'p')
 		str = ft_strjoin_free("0x", str, 2);
-
-	//size = (int)ft_strlen(str);
-
-//	tmp = ft_strdup(str);
-	ft_width(&str, param);
-//	ft_width(str, param);
+	ft_width(&str, param, 0, 0);
 	size = (int)ft_strlen(str);
 	free(str);
-//	free(tmp);
 	width = param->min_width;
 	if (param->min_width > size)
 		return (param->min_width);

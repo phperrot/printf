@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:59:39 by phperrot          #+#    #+#             */
-/*   Updated: 2020/02/01 14:59:30 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/02/01 17:01:10 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ t_dstruct			*ft_dstructnew(int content);
 int					ft_printf(const char *s, ...);
 int					ft_test_presence_str(char *s, char *set);
 char				*ft_add_char(char *str, char c);
-char				*ft_precision(char *argv, t_struct *param);
-void				ft_width(char **precision_str, t_struct *param);
+char				*ft_precision(char *argv, t_struct *param, int negative);
+void				ft_width(char **prec_str, t_struct *param, int i, int w);
 int					ft_display(t_struct *param, char *argv);
 char				*ft_strdup_char(char c);
 char				*ft_add_char(char *str, char c);
@@ -59,9 +59,10 @@ char				*ft_get_arg(va_list arguments, t_struct **param);
 int					ft_abs(int n);
 char				*ft_strjoin_free(char const *s1, char const *s2, int param);
 int					check_double_percent(char *str, int *i);
-int					check_flag(char *str, int i, t_struct **param);
+int					check_flag(char *str, int i, t_struct **param, int j);
 int					check_width(char *str, int i, t_struct **param);
-int					check_prec_type(char *s, int i, t_struct **par);
+int					check_prec_type(char *s, int i, t_struct **par, int j);
+void				multi_free(char *s1, char *s2, char *s3, t_struct *struct1);
 
 #	endif
 #	ifndef SET_FLAG

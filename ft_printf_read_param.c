@@ -6,37 +6,25 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 09:10:57 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/31 14:46:22 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/02/01 16:35:50 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			multi_free(char *s1, char *s2, char *s3, t_struct *struct1)
-{
-	free(s1);
-	free(s2);
-	free(s3);
-	free(struct1);
-}
-
 t_struct		*ft_parsing(int *i, char **tmp, char **tmp1, char *str)
 {
 	t_struct	*par;
+	int			incrementor;
 
+	incrementor = 0;
 	par = ft_sstructnew("\0");
 	*i = *i + 1;
-	*i = check_flag(str, *i, &par);
+	*i = check_flag(str, *i, &par, incrementor);
 	*tmp = ft_strdup(par->flag);
 	*i = check_width(str, *i, &par);
-	*i = check_prec_type(str, *i, &par);
+	*i = check_prec_type(str, *i, &par, incrementor);
 	*tmp1 = ft_strdup(par->prec);
-/*	ft_putstr("\n==============\n");
-	ft_putstr("FLAG=");ft_putstr(par->flag);ft_putchar('\n');
-	ft_putstr("WIDTH=");ft_putnbr(par->min_width);ft_putchar('\n');
-	ft_putstr("PREC=");ft_putstr(par->prec);ft_putchar('\n');
-*///	if ((par->prec))
-//		free(par->prec);
 	return (par);
 }
 
@@ -54,9 +42,18 @@ char			*ft_wildcard(t_struct **p, char *arg, char **tmp, va_list args)
 		(*p)->pound_flag = 0;
 		free(arg);
 		arg = ft_get_arg(args, &(*p));
-//		free((*p)->prec);
 	}
 	return (arg);
+}
+
+void			ft_star(t_struct **par, char **arg, char **tmp1, va_list l)
+{
+	(**par).prec = ft_strdup_free((**par).prec, *arg);
+	*arg = ft_strjoin_free(".", *arg, 2);
+	*tmp1 = ft_strdup_free(*tmp1, *arg);
+	free(*arg);
+	(**par).pound_flag = 0;
+	*arg = ft_get_arg(l, &(*par));
 }
 
 int				ft_param(int i, char *s, va_list l, t_dstruct **r)
@@ -70,28 +67,10 @@ int				ft_param(int i, char *s, va_list l, t_dstruct **r)
 	arg = ft_get_arg(l, &(par));
 	arg = ft_wildcard(&par, arg, &tmp, l);
 	if (ft_strncmp(par->prec, ".*", 2) == 0)
-	{
-		free ((*par).prec);
-/**/	(*par).prec = ft_strdup(arg);
-//		ft_putstr(par->prec);ft_putchar('\n');ft_strchr(par->prec, '*');
-//		ft_putstr("\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv  ");ft_putnbr(i);ft_putchar('\n');
-//		ft_putstr(arg);ft_putchar('\n');
-		arg = ft_strjoin_free(".", arg, 2);
-//		ft_putstr(arg);ft_putchar('\n');
-		tmp1 = ft_strdup_free(tmp1, arg);
-		free(arg);
-		(*par).pound_flag = 0;
-		arg = ft_get_arg(l, &(par));
-//		ft_putstr("\nooooooooooooooooooooooooooooooooooo\n");
-//		ft_putstr(arg);ft_putchar('\n');
-//		ft_putstr("TYPE");ft_putchar((par)->type);ft_putchar('\n');
-/*
- * NEW
-*/ //		par->prec = arg;
-	}
+		ft_star(&(par), &arg, &tmp1, l);
 	if (ft_strlen(arg) >= 2 && ft_strlen(tmp1) >= 2)
-	if (tmp1[1] == '-' && arg[0] == '0' && arg[1] == '\0')
-		tmp1 = ft_strdup_free(tmp1, "");
+		if (tmp1[1] == '-' && arg[0] == '0' && arg[1] == '\0')
+			tmp1 = ft_strdup_free(tmp1, "");
 	if (ft_strlen(par->flag))
 		free(par->flag);
 	par->flag = ft_strdup_free(tmp, tmp);

@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 14:13:35 by phperrot          #+#    #+#             */
-/*   Updated: 2020/02/01 14:59:01 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/02/01 16:56:56 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void		ft_width_display(char *preci_str, t_struct *p, int i)
 {
-	if (preci_str[0] == '\0' && p->type == 'c')
-		i++;
+	i = (preci_str[0] == '\0' && p->type == 'c') ? i + 1 : i;
 	if (ft_strchr(p->flag, '-'))
 	{
 		if (preci_str[0] == '\0' && p->type == 'c')
@@ -42,41 +41,25 @@ void		ft_width_display(char *preci_str, t_struct *p, int i)
 	}
 }
 
-void		ft_width(char **precision_str, t_struct *p)
+void		ft_width(char **precision_str, t_struct *p, int i, int tmp1)
 {
-	int		i;
-	char	*tmp;
-	int 	tmp1;
+	char *tmp;
 
-/*	ft_putstr("\n#######################\n");
-	ft_putstr("FLAG=");ft_putstr(p->flag);ft_putchar('\n');
-	ft_putstr("WIDTH=");ft_putnbr(p->min_width);ft_putchar('\n');
-	ft_putstr("PREC=");ft_putstr(p->prec);ft_putchar('\n');	
-	ft_putstr("TYPE=");ft_putchar(p->type);ft_putchar('\n');	
-	ft_putstr("POUND_FLAG=");ft_putnbr(p->pound_flag);ft_putchar('\n');	
-ft_putstr("LEN PRECISION STR");ft_putnbr(ft_strlen(precision_str));ft_putchar('\n');
-	ft_putstr("PRECISION STR=");ft_putstr(precision_str);ft_putchar('\n');	
-*/	
-if ((int)ft_strlen(*precision_str) >= p->min_width)
-	{
+	if ((int)ft_strlen(*precision_str) >= p->min_width)
 		if (precision_str[0][0] == '\0' && p->type == 'c')
 			ft_putchar('\0');
+	if ((int)ft_strlen(*precision_str) >= p->min_width)
 		ft_putstr(*precision_str);
-	}
 	else
 	{
-		i = 0;
 		tmp1 = 0;
 		if (ft_strlen(p->prec) >= 1)
-			tmp1 = (ft_atoi(p->prec + 1, 'd') < 0)? 1 : 0;
+			tmp1 = (ft_atoi(p->prec + 1, 'd') < 0) ? 1 : 0;
 		if (precision_str[0][0] == '-' && ft_strchr(p->flag, '0')
-//		&& !ft_strchr(p->flag, '-') && (ft_atoi(p->prec + 1, 'd') < 0
-		&& !ft_strchr(p->flag, '-') && ( tmp1
-		|| ft_strlen(p->prec) == 0))
+		&& !ft_strchr(p->flag, '-') && (tmp1 || ft_strlen(p->prec) == 0))
 		{
 			ft_putchar('-');
-			tmp = ft_strdup(*precision_str);
-			free (*precision_str);
+			tmp = ft_strdup_free(*precision_str, *precision_str);
 			*precision_str = NULL;
 			*precision_str = ft_strdup(tmp + 1);
 			free(tmp);

@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 11:03:09 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/31 14:46:50 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/02/01 16:37:00 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,31 +28,23 @@ int				check_double_percent(char *str, int *i)
 	return (check);
 }
 
-int				check_flag(char *str, int i, t_struct **param)
+int				check_flag(char *str, int i, t_struct **param, int k)
 {
-//	char		*tmp;
 	int			j;
-	int			k;
-	int			len;
 
 	j = i;
 	if (ft_test_presence_char(str[i], SET_FLAG))
 	{
 		while (ft_test_presence_char(str[i], SET_FLAG))
-		{
 			i++;
+		if (!((*param)->flag = malloc(sizeof(char) * (i - j + 1))))
+			return (0);
+		while (k < i - j)
+		{
+			(*param)->flag[k] = str[j + k];
+			k++;
 		}
-	len = i - j;
-	k = 0;
-	if (!((*param)->flag = malloc(sizeof(char) * (len + 1))))
-		return (0);
-	while (k < len)
-	{
-		(*param)->flag[k] = str[j + k];
-//		(*param)->flag[k] = 'a';/** to replace **/
-		k++;
-	}
-	(*param)->flag[k] = '\0';
+		(*param)->flag[k] = '\0';
 	}
 	if (str[i] == '*')
 	{
@@ -61,37 +53,26 @@ int				check_flag(char *str, int i, t_struct **param)
 	}
 	if (ft_strchr((*param)->flag, '-') != 0)
 		(*param)->flag = ft_strreplace((*param)->flag, '0', 'e');
-
 	return (i);
 }
 
 int				check_width(char *str, int i, t_struct **param)
 {
-	char		*tmp1;
-	char		*tmp2;
 	int			j;
 	int			k;
-	int			len;
+	char		*tmp1;
 
 	j = i;
-	tmp1 = NULL;
-	tmp2 = NULL;
 	while (str[i] == '0')
 		i++;
 	if (ft_isdigit(str[i]))
 	{
 		while (ft_isdigit(str[i]))
-		{
-	/*		tmp2 = tmp1;
-			free(tmp1);
-			tmp1 = ft_add_char(tmp2, str[i]);
-	*/		i++;
-		}
-		len = i - j;
+			i++;
 		k = 0;
-		if (!((tmp1 = malloc(sizeof(char) * (len + 1)))))
-						return (0);
-		while (k < len)
+		if (!((tmp1 = malloc(sizeof(char) * (i - j + 1)))))
+			return (0);
+		while (k < i - j)
 		{
 			tmp1[k] = str[j + k];
 			k++;
@@ -103,40 +84,24 @@ int				check_width(char *str, int i, t_struct **param)
 	return (i);
 }
 
-int				check_prec_type(char *s, int i, t_struct **par)
+int				check_prec_type(char *s, int i, t_struct **par, int k)
 {
-//	char		*tmp1;
-//	char		*tmp2;
 	int			j;
-	int			k;
-	int			len;
 
 	j = i;
 	if (s[i] == '.')
 	{
-//		tmp1 = ft_strdup(".");
 		i++;
 		while ((ft_isdigit(s[i]) || s[i] == '*') && s[i] != '\0')
-		{
-//			tmp2 = ft_strdup(tmp1);
-//			free(tmp1);
-//			tmp1 = ft_add_char(tmp2, s[i]);
-//			free(tmp2);
 			i++;
-		}
-		len = i - j;
-		if (!((*par)->prec = malloc(sizeof(char) * (len + 1))))
+		if (!((*par)->prec = malloc(sizeof(char) * (i - j + 1))))
 			return (0);
-		k = 0;
-		while (k < len)
+		while (k < i - j)
 		{
 			(*par)->prec[k] = s[j + k];
 			k++;
 		}
 		(*par)->prec[k] = '\0';
-
-//		((*par)->prec) = tmp1;
-//		free(tmp1);
 	}
 	if (ft_test_presence_char(s[i], SET_CONVERSION))
 		(*par)->type = s[i];
