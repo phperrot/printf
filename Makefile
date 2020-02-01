@@ -6,7 +6,7 @@
 #    By: phperrot <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/01/16 10:58:37 by phperrot          #+#    #+#              #
-#    Updated: 2020/01/16 11:11:22 by phperrot         ###   ########.fr        #
+#    Updated: 2020/02/01 16:37:48 by phperrot         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = ft_printf.c \
 	   ft_printf_read_param.c \
 	   ft_printf_read_param2.c \
 	   ft_printf_utils.c \
-	   ft_printf_utils_struct.c \
+	   ft_printf_utils2.c \
 	   ft_printf_width.c \
 	   ft_printf_precision.c
 
