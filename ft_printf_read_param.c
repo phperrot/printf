@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/03 09:10:57 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/31 12:16:47 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 14:46:22 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int				ft_param(int i, char *s, va_list l, t_dstruct **r)
 	arg = ft_wildcard(&par, arg, &tmp, l);
 	if (ft_strncmp(par->prec, ".*", 2) == 0)
 	{
+		free ((*par).prec);
 /**/	(*par).prec = ft_strdup(arg);
 //		ft_putstr(par->prec);ft_putchar('\n');ft_strchr(par->prec, '*');
 //		ft_putstr("\nvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv  ");ft_putnbr(i);ft_putchar('\n');
@@ -91,7 +92,11 @@ int				ft_param(int i, char *s, va_list l, t_dstruct **r)
 	if (ft_strlen(arg) >= 2 && ft_strlen(tmp1) >= 2)
 	if (tmp1[1] == '-' && arg[0] == '0' && arg[1] == '\0')
 		tmp1 = ft_strdup_free(tmp1, "");
+	if (ft_strlen(par->flag))
+		free(par->flag);
 	par->flag = ft_strdup_free(tmp, tmp);
+	if (ft_strlen(par->prec))
+		free(par->prec);
 	par->prec = ft_strdup_free(tmp1, tmp1);
 	(*r)->len_arg = ft_display(par, arg) - (*r)->double_percent;
 	if (arg[0] == 0 && par->type == 'c' && par->min_width < 1)
@@ -123,7 +128,7 @@ t_dstruct		*ft_read_string(char *str, va_list arguments, int i)
 			return (result);
 		}
 		if (str[i] != '%')
-		ft_putchar(str[i]);
+			ft_putchar(str[i]);
 		i++;
 	}
 	result->marker1 = i - k - result->double_percent;

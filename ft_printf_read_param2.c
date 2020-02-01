@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 11:03:09 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/31 12:12:43 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/01/31 14:46:50 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,16 @@ int				check_flag(char *str, int i, t_struct **param)
 	{
 		while (ft_test_presence_char(str[i], SET_FLAG))
 		{
-/*			tmp = ft_add_char((*param)->flag, str[i]);
-			(*param)->flag = tmp;
-			free(tmp);
-			tmp = NULL;
-*/			i++;
+			i++;
 		}
-/*		tmp = ft_add_char((*param)->flag, '\0');
-		(*param)->flag = tmp;
-		free(tmp);
-		tmp = NULL;
-*/	len = i - j;
+	len = i - j;
 	k = 0;
 	if (!((*param)->flag = malloc(sizeof(char) * (len + 1))))
 		return (0);
 	while (k < len)
 	{
 		(*param)->flag[k] = str[j + k];
+//		(*param)->flag[k] = 'a';/** to replace **/
 		k++;
 	}
 	(*param)->flag[k] = '\0';
@@ -68,6 +61,7 @@ int				check_flag(char *str, int i, t_struct **param)
 	}
 	if (ft_strchr((*param)->flag, '-') != 0)
 		(*param)->flag = ft_strreplace((*param)->flag, '0', 'e');
+
 	return (i);
 }
 
@@ -104,7 +98,7 @@ int				check_width(char *str, int i, t_struct **param)
 		}
 		tmp1[k] = '\0';
 		((*param)->min_width) = ft_atoi(tmp1, 'd');
-	//	free(tmp1);
+		free(tmp1);
 	}
 	return (i);
 }

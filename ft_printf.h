@@ -6,7 +6,7 @@
 /*   By: phperrot <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 13:59:39 by phperrot          #+#    #+#             */
-/*   Updated: 2020/01/30 17:48:49 by phperrot         ###   ########.fr       */
+/*   Updated: 2020/02/01 14:59:30 by phperrot         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int					ft_printf(const char *s, ...);
 int					ft_test_presence_str(char *s, char *set);
 char				*ft_add_char(char *str, char c);
 char				*ft_precision(char *argv, t_struct *param);
-void				ft_width(char *precision_str, t_struct *param);
+void				ft_width(char **precision_str, t_struct *param);
 int					ft_display(t_struct *param, char *argv);
 char				*ft_strdup_char(char c);
 char				*ft_add_char(char *str, char c);
